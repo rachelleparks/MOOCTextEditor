@@ -51,7 +51,16 @@ public class EfficientDocument extends Document {
 		// MAKE SURE YOU UNDERSTAND THIS LINE BEFORE YOU CODE THE REST
 		// OF THIS METHOD.
 		List<String> tokens = getTokens("[!?.]+|[a-zA-Z]+");
-		
+		int length = tokens.size();
+		for (String word : tokens){	
+//			System.out.println(word);
+			if(isWord(word)) {
+				numSyllables += countSyllables(word);
+				numWords++;
+			}
+			else numSentences++;
+		}
+		if (isWord(tokens.get(length-1))) numSentences++;
 		// TODO: Finish this method.  Remember the countSyllables method from 
 		// Document.  That will come in handy here.  isWord defined above will also help.
 	}
