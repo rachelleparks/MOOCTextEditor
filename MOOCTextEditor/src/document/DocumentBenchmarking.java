@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 
 public class DocumentBenchmarking {
 
-	
+	private static String str;
 	public static void main(String [] args) {
 
 	    // Run each test more than once to get bigger numbers and less noise.
@@ -37,6 +37,13 @@ public class DocumentBenchmarking {
 		// TODO: Fill in the rest of this method so that it runs two loops
 		// and prints out timing results as described in the assignment 
 		// instructions and following the pseudocode below.
+		
+		System.out.print("NumberOfChars");
+		System.out.print('\t');		
+		System.out.print("BasicTime");
+		System.out.print('\t');
+		System.out.print("EfficientTime");
+		System.out.print('\n');
 		for (int numToCheck = start; numToCheck < numSteps*increment + start; 
 				numToCheck += increment)
 		{
@@ -58,11 +65,36 @@ public class DocumentBenchmarking {
 			 * 6. Print out the time it took to complete the loop in step 5 
 			 *      (on the same line as the first print statement) followed by a newline (\n) 
 			 */  
-			 
+			System.out.print(numToCheck);
+			System.out.print('\t');
+			
+			String readfile = getStringFromFile(textfile, numToCheck);
+			long startTimeB = System.nanoTime();
+			for (int trail = 0; trail < trials; trail++) {
+				BasicDocument bd = new BasicDocument(readfile);
+				double fs = bd.getFleschScore();
+			}
+			long endTimeB = System.nanoTime();
+			double estTimeB = (endTimeB - startTimeB) / 1000000000.0 / trials;
+			
+			System.out.print(estTimeB);
+			System.out.print('\t');
+			
+			long startTimeE = System.nanoTime();
+			for (int trail = 0; trail < trials; trail++) {
+				EfficientDocument bd = new EfficientDocument(readfile);
+				double fs = bd.getFleschScore();
+			}
+			long endTimeE = System.nanoTime();
+			double estTimeE = (endTimeE - startTimeE) / 1000000000.0 / trials;
+			
+			System.out.print(estTimeE);
+			System.out.print('\n');
 		}
 	
 	}
 	
+
 	/** Get a specified number of characters from a text file
 	 * 
 	 * @param filename The file to read from
