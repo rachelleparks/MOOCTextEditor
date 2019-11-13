@@ -17,6 +17,11 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	/** Create a new empty LinkedList */
 	public MyLinkedList() {
 		// TODO: Implement this method
+		this.size = 0;
+		this.head = new LLNode<E>(null);
+		this.tail = new LLNode<E>(null);
+		this.head.next = this.tail;
+		this.tail.prev = this.head;
 	}
 
 	/**
