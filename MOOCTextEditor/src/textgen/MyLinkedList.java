@@ -133,7 +133,18 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E set(int index, E element) 
 	{
 		// TODO: Implement this method
-		return null;
+		if (index < 0 || index > size - 1) {
+			throw new IndexOutOfBoundsException("Invalid index input!!");
+		}
+		if (element == null) {
+			throw new NullPointerException("Invalid element input!!");
+		}
+		LLNode<E> nodeToSet = head;
+		for (int i = 0; i <= index; i++) {
+			nodeToSet = nodeToSet.next;
+		}
+		nodeToSet.data = element;
+		return element;
 	}   
 }
 
