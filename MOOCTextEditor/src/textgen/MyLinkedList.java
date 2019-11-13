@@ -31,7 +31,17 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public boolean add(E element ) 
 	{
 		// TODO: Implement this method
-		return false;
+		if (element == null) {
+			throw new NullPointerException("Invalid element input!!");
+		}
+		LLNode<E> nodeToAdd = new LLNode<E>(element);
+		LLNode<E> prev = tail.prev;
+		prev.next = nodeToAdd;
+		nodeToAdd.prev = prev;
+		nodeToAdd.next = tail;
+		tail.prev = nodeToAdd;
+		size++;
+		return true;
 	}
 
 	/** Get the element at position index 
