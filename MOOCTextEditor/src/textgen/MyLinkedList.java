@@ -87,7 +87,22 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E remove(int index) 
 	{
 		// TODO: Implement this method
-		return null;
+		if (index < 0 || index > size - 1) {
+			throw new IndexOutOfBoundsException("Invalid index input!!");
+		}
+		LLNode<E> nodeToRemove = head;
+		for (int i = 0; i <= index; i++) {
+			nodeToRemove = nodeToRemove.next;
+		}
+		// System.out.println(nodeToRemove.data);
+		LLNode<E> prev = nodeToRemove.prev;
+		LLNode<E> next = nodeToRemove.next;
+		//System.out.println(prev.data);
+		prev.next = next;
+		next.prev = prev;
+		size--;
+		E value = nodeToRemove.data;
+		return value;
 	}
 
 	/**
