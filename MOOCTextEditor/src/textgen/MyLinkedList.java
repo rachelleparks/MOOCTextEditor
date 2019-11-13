@@ -39,7 +39,15 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E get(int index) 
 	{
 		// TODO: Implement this method.
-		return null;
+		if (index < 0 || index > size - 1) {
+			throw new IndexOutOfBoundsException("Invalid index input!!");
+		}
+		LLNode<E> target = head;
+		for (int i = 0; i <= index; i++) {
+			target = target.next;
+		}
+		E value = target.data;
+		return value;
 	}
 
 	/**
