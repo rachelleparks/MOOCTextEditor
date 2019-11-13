@@ -124,7 +124,23 @@ public class MyLinkedListTester {
 	public void testAddEnd()
 	{
         // TODO: implement this test
+		try {
+			shortList.add(null);
+			fail("Check invalid element");
+		}
+		catch (NullPointerException e) {
 		
+		}
+		
+		boolean state = emptyList.add(0);
+		assertEquals("AddEnd: check state is correct ", true, state);
+		assertEquals("AddEnd: check value is correct", (Integer)0, emptyList.get(0));
+		assertEquals("AddEnd: check size is correct", 1, emptyList.size());
+		
+		state = emptyList.add(1);
+		assertEquals("AddEnd: check state is correct ", true, state);
+		assertEquals("AddEnd: check value is correct", (Integer)1, emptyList.get(1));
+		assertEquals("AddEnd: check size is correct", 2, emptyList.size());		
 	}
 
 	

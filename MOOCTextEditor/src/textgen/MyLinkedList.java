@@ -68,6 +68,24 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public void add(int index, E element ) 
 	{
 		// TODO: Implement this method
+		if (element == null) {
+			throw new NullPointerException("Invalid element input!!");
+		}
+		if ((index < 0 || index > size - 1) && (index != 0 || size != 0)) {
+			throw new IndexOutOfBoundsException("Invalid index input!!");
+		}
+		
+		LLNode<E> nodeToAdd = new LLNode<E>(element);
+		LLNode<E> nodeAtIndex = head;
+		for (int i = 0; i <= index; i++) {
+			nodeAtIndex = nodeAtIndex.next;
+		}
+		LLNode<E> prev = nodeAtIndex.prev;
+		prev.next = nodeToAdd;
+		nodeToAdd.prev = prev;
+		nodeToAdd.next = nodeAtIndex;
+		nodeAtIndex.prev = nodeToAdd;
+		size++;
 	}
 
 
